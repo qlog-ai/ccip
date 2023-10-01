@@ -23,7 +23,7 @@ Deployment arguments
 Example :  
 Avalanche Fuji (source) -> Optimism Goerli (destination)
 
-Router Address (Avalanche) : `0x554472a2720E5E7D5D3C817529aBA05EEd5F82D8`
+Router Address (Avalanche) : `0x554472a2720E5E7D5D3C817529aBA05EEd5F82D8`   
 Link Address (Avalanche) : `0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846`
 
 ### Deploy sender contract to desired network
