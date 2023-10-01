@@ -1,4 +1,4 @@
-import { ethers } from "hardhat";
+import { ethers } from "hardhat";0x50d00480D383Fd9846fe4419C0288c469DbdCd8E
 import { abi } from '../abi.json';
 
 async function main() {
