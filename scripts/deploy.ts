@@ -7,7 +7,7 @@ async function main() {
   const AVALANCHE_ROUTER = '0x554472a2720E5E7D5D3C817529aBA05EEd5F82D8';
   const AVALANCHE_LINK = '0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846';
 
-  const OP_DEST_CHAIN = BigInt(2664363617261496610);
+  const OP_DEST_CHAIN = '2664363617261496610'
 
   const senderAvalanche = await ethers.deployContract("Sender", [AVALANCHE_ROUTER, AVALANCHE_LINK], signer);
 
