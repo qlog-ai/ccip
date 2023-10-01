@@ -1,22 +1,23 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const unlockTime = currentTimestampInSeconds + 60;
+  const accounts = await ethers.getSigners();
+  const signer = accounts[0];
 
-  const lockedAmount = ethers.parseEther("0.001");
+  const AVALANCHE_ROUTER = '0x554472a2720E5E7D5D3C817529aBA05EEd5F82D8';
+  const AVALANCHE_LINK = '0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846';
 
-  const lock = await ethers.deployContract("Lock", [unlockTime], {
-    value: lockedAmount,
-  });
+  const OP_DEST_CHAIN = BigInt(2664363617261496610);
 
-  await lock.waitForDeployment();
+  const senderAvalanche = await ethers.deployContract("Sender", [AVALANCHE_ROUTER, AVALANCHE_LINK], signer);
 
-  console.log(
-    `Lock with ${ethers.formatEther(
-      lockedAmount
-    )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.target}`
-  );
+  await senderAvalanche.waitForDeployment();
+
+  console.log(`Deployed ccip sender with owner address : ${JSON.stringify(signer)} deployed to ${senderAvalanche.target}`);
+
+  await senderAvalanche.whitelistChain(OP_DEST_CHAIN);
+
+  console.log(`Whitelisted ${OP_DEST_CHAIN} chain for CCIP transfers`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
